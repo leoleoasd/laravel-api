@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * This file is a part of leoleoasd/laravel-api.
+ * Copyright (C) 2019 leoleoasd
+ */
+
 return [
     /*
     |--------------------------------------------------------------------------

@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * This file is a part of leoleoasd/laravel-api.
+ * Copyright (C) 2019 leoleoasd
+ */
+
 namespace Leoleoasd\LaravelApi;
 
 use Closure;
@@ -21,7 +26,7 @@ class APIMiddleware
     {
         $path = $request->path();
         $path = explode('/', $path);
-        if ($path[0] != 'api') {
+        if ('api' != $path[0]) {
             return $next($request);
         }
         if (isset($path[1]) and preg_match('/v[0-9]*/', $path[1])) {
@@ -37,7 +42,7 @@ class APIMiddleware
         }
         $newPath = '/api/'.$version;
         foreach ($path as $k => $p) {
-            if ($k == 0) {
+            if (0 == $k) {
                 continue;
             }
             $newPath .= '/'.$p;

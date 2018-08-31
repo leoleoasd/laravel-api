@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * This file is a part of leoleoasd/laravel-api.
+ * Copyright (C) 2019 leoleoasd
+ */
+
 namespace Leoleoasd\LaravelApi;
 
 class Tools
@@ -21,8 +26,8 @@ class Tools
 
         return [
             'standard_tree' => $match[1],
-            'subtype'       => $match[2],
-            'version'       => $match[3],
+            'subtype' => $match[2],
+            'version' => $match[3],
         ];
     }
 

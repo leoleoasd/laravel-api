@@ -1,6 +1,6 @@
 <h1 align="center"> laravel-api </h1>
 
-<p align="center"> A Laravel-S capable API backend package.</p>
+<p align="center"> A Laravel-S capable API backend package. </p>
 
 
 ## Installing

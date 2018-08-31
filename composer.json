@@ -1,0 +1,24 @@
+{
+    "name": "leoleoasd\/laravel-api",
+    "description": "A Laravel-S capable API backend package",
+    "license": "GPLV3",
+    "authors": [
+        {
+            "name": "Leo Lu",
+            "email": "luyuxuanleo@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Leoleoasd\\LaravelApi\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Leoleoasd\\LaravelApi\\APIServiceProvider"
+            ]
+        }
+    }
+}

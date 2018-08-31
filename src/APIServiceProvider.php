@@ -1,4 +1,5 @@
 <?php
+
 namespace Leoleoasd\LaravelApi;
 
 use Illuminate\Support\ServiceProvider;

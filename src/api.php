@@ -9,7 +9,7 @@ return [
     | default api version when version isn't defined in header.
     |
     */
-    'version' => env("API_VERSION",'v1'),
+    'version' => env('API_VERSION', 'v1'),
     /*
     |--------------------------------------------------------------------------
     | Strict Mode
@@ -19,7 +19,7 @@ return [
     | If this is false, then request like /api/v1/foo/bar will throw an NotFoundHttpException
     |
     */
-    'strict_mode' => env("API_STRICT_MODE",true),
+    'strict_mode' => env('API_STRICT_MODE', true),
     /*
     |--------------------------------------------------------------------------
     | Api Subtype
@@ -28,7 +28,7 @@ return [
     | A short name of your application
     |
     */
-    'subtype' => env("API_SUBTYPE",'myapp'),
+    'subtype' => env('API_SUBTYPE', 'myapp'),
     /*
     |--------------------------------------------------------------------------
     | API Standards Tree
@@ -37,5 +37,5 @@ return [
     | one of 'x' 'prs' 'vnd'
     |
     */
-    'standard_tree' => env("API_STANDARDS_TREE",'x')
+    'standard_tree' => env('API_STANDARDS_TREE', 'x'),
 ];

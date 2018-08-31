@@ -1,7 +1,7 @@
 {
     "name": "leoleoasd\/laravel-api",
     "description": "A Laravel-S capable API backend package",
-    "license": "GPLV3",
+    "license": "GPLv3",
     "authors": [
         {
             "name": "Leo Lu",

@@ -8,7 +8,9 @@
             "email": "luyuxuanleo@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "jms/serializer": "^1.13"
+    },
     "autoload": {
         "psr-4": {
             "Leoleoasd\\LaravelApi\\": "src"

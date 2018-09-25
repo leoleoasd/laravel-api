@@ -32,20 +32,19 @@ class Tools
      */
     public static function analyseHeader($accept)
     {
-        $preg = '/application\/(x|vnd|prs).([A-Za-z0-9]*).(v[0-9]*)+(|json|xml)/';
+        $preg = '/application\/(x|vnd|prs).([A-Za-z0-9]*).(v[0-9]*)(\+(json|xml))?/';
         preg_match($preg, $accept, $match);
         if ($match == []) {
             return;
         }
-        if ('' == $match[4]) {
-            $match[4] = 'json';
+        if ($match[5] == '') {
+            $match[5] = 'json';
         }
-
         return [
             'standard_tree' => $match[1],
             'subtype' => $match[2],
             'version' => $match[3],
-            'formatter' => $match[4],
+            'formatter' => $match[5],
         ];
     }
 

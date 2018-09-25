@@ -17,9 +17,9 @@ class ErrorHandler extends ExceptionHandler
 {
     public function render($request, Exception $exception)
     {
-        if (!$request->isAPI) {
+        //if (!$request->isAPI)
             return parent::render($request, $exception);
-        }
+
         $r = ResponseJar::make($exception->data ?? [], $exception->errorCode ?? -1, get_class($exception).$exception->getMessage(), $exception->statusCode ?? 500,
                 [
                     'request' => $request->all(),

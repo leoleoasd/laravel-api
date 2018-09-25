@@ -11,6 +11,7 @@
 namespace Leoleoasd\LaravelApi;
 
 use Illuminate\Http\Response;
+use JMS\Serializer\SerializerBuilder;
 
 class ResponseJar
 {
@@ -81,12 +82,11 @@ class ResponseJar
         if (!config('app.debug')) {
             $this->debug = [];
         }
-        if ('json' == Tools::$header['formatter']) {
-            $resp = new Response(json_encode($this));
-            $resp->header('Content-Type', 'application/json');
-            $resp->setStatusCode($this->status_code ?? 500);
-        }
-
+        $serializer = SerializerBuilder::create()->build();
+        $content = $serializer->serialize($this, Tools::$header['formatter']);
+        $resp = new Response($content);
+        $resp->header('Content-Type', 'application/'.Tools::$header['formatter']);
+        $resp->setStatusCode($this->status_code ?? 500);
         return $resp;
     }
 }

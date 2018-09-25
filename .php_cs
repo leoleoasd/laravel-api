@@ -4,7 +4,7 @@ This file is part of the leoleoasd/laravel-api.
 
 (c) Leo Lu <luyuxuanleo@gmail.com>
 
-This source file is subject to the GPLV3 license that is bundled.
+This source file is subject to the MIT license that is bundled.
 EOF;
 
 return PhpCsFixer\Config::create()

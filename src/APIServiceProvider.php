@@ -1,12 +1,16 @@
 <?php
 
 /*
- * This file is a part of leoleoasd/laravel-api.
- * Copyright (C) 2019 leoleoasd
+ * This file is part of the leoleoasd/laravel-api.
+ *
+ * (c) Leo Lu <luyuxuanleo@gmail.com>
+ *
+ * This source file is subject to the GPLV3 license that is bundled.
  */
 
 namespace Leoleoasd\LaravelApi;
 
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
 
 class APIServiceProvider extends ServiceProvider
@@ -19,6 +23,10 @@ class APIServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/api.php' => config_path('api.php'),
         ]);
+        $this->app->singleton(
+            \Illuminate\Contracts\Debug\ExceptionHandler::class,
+            ErrorHandler::class
+        );
     }
 
     /**
@@ -29,5 +37,7 @@ class APIServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/api.php', 'api'
         );
+        $kernel = $this->app[Kernel::class];
+        $kernel->prependMiddleware(APIMiddleware::class);
     }
 }

@@ -1,8 +1,11 @@
 <?php
 
 /*
- * This file is a part of leoleoasd/laravel-api.
- * Copyright (C) 2019 leoleoasd
+ * This file is part of the leoleoasd/laravel-api.
+ *
+ * (c) Leo Lu <luyuxuanleo@gmail.com>
+ *
+ * This source file is subject to the GPLV3 license that is bundled.
  */
 
 namespace Leoleoasd\LaravelApi;
@@ -29,6 +32,7 @@ class APIMiddleware
         if ('api' != $path[0]) {
             return $next($request);
         }
+        $request->isAPI = true;
         if (isset($path[1]) and preg_match('/v[0-9]*/', $path[1])) {
             if (config('api.strict_mode')) {
                 throw new BadRequestHttpException('You are not allowed to define api version in URL.');
@@ -36,7 +40,8 @@ class APIMiddleware
 
             return $next($request);
         }
-        $version = Tools::getVersion($request);
+        Tools::init($request);
+        $version = Tools::getVersion();
         if (!$version) {
             throw new BadRequestHttpException('Invalid Header.');
         }
@@ -55,7 +60,10 @@ class APIMiddleware
         $requestURI = $ref->getProperty('requestUri');
         $requestURI->setAccessible(true);
         $requestURI->setValue($request, $newPath);
+        $response = $next($request);
+        $rep = json_decode($response->getContent());
+        $rep = ResponseJar::make($rep, 0, '');
 
-        return $next($request);
+        return $rep->makeResponse();
     }
 }

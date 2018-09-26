@@ -1,7 +1,4 @@
-<?php
-
-/*
- * This file is part of the leoleoasd/laravel-api.
+s file is part of the leoleoasd/laravel-api.
  *
  * (c) Leo Lu <luyuxuanleo@gmail.com>
  *
@@ -19,7 +16,7 @@ class ErrorHandler extends ExceptionHandler
     {
         if(!$request->isAPI)
             return parent::render($request, $exception);
-        $r = ResponseJar::make($exception->data ?? [], $exception->errorCode ?? -1, (get_class($exception) != "Excecption" ? get_class($exception) : "").' '.$exception->getMessage(), $exception->statusCode ?? 500,
+        $r = ResponseJar::make($exception->data ?? [], $exception->errorCode ?? -1, (get_class($exception) != "Exception" ? get_class($exception) : "").' '.$exception->getMessage(), $exception->statusCode ?? 500,
                 [
                     'request' => $request->all(),
                     'trace' => json_decode(json_encode($exception->getTrace()))

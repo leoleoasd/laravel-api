@@ -1,11 +1,8 @@
 <?php
 
 /*
- * This file is part of the leoleoasd/laravel-api.
- *
- * (c) Leo Lu <luyuxuanleo@gmail.com>
- *
- * This source file is subject to the GPLV3 license that is bundled.
+ * This file is a part of leoleoasd/laravel-api.
+ * Copyright (C) 2019 leoleoasd
  */
 
 namespace Leoleoasd\LaravelApi;
@@ -40,6 +37,5 @@ class APIServiceProvider extends ServiceProvider
         );
         $kernel = $this->app[Kernel::class];
         $kernel->prependMiddleware(APIMiddleware::class);
-
     }
 }

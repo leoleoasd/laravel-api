@@ -35,7 +35,7 @@ class Tools
         $preg = '/application\/(x|vnd|prs).([A-Za-z0-9]*).(v[0-9]*)(\+(json|xml))?/';
         preg_match($preg, $accept, $match);
         if ($match == []) {
-            return;
+            return [];
         }
         if ($match[5] == '') {
             $match[5] = 'json';
@@ -63,7 +63,7 @@ class Tools
                 return $header['version'];
             }
             if (config('api.strict_mode')) {
-                return;
+                return null;
             }
 
             return config('api.default_version');

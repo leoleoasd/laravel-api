@@ -27,6 +27,7 @@ class APIServiceProvider extends ServiceProvider
             \Illuminate\Contracts\Debug\ExceptionHandler::class,
             ErrorHandler::class
         );
+        //var_dump($this->app->getBindings());
     }
 
     /**
@@ -39,5 +40,6 @@ class APIServiceProvider extends ServiceProvider
         );
         $kernel = $this->app[Kernel::class];
         $kernel->prependMiddleware(APIMiddleware::class);
+
     }
 }

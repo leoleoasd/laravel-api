@@ -20,9 +20,7 @@ class APIMiddleware
      *
      * @param \Illuminate\Http\Request $request
      * @param \Closure                 $next
-     *
      * @throws \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
-     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -37,7 +35,6 @@ class APIMiddleware
             if (config('api.strict_mode')) {
                 throw new BadRequestHttpException('You are not allowed to define api version in URL.');
             }
-
             return $next($request);
         }
         Tools::init($request);
@@ -61,9 +58,12 @@ class APIMiddleware
         $requestURI->setAccessible(true);
         $requestURI->setValue($request, $newPath);
         $response = $next($request);
-        $rep = json_decode($response->getContent());
-        $rep = ResponseJar::make($rep, 0, '');
-
-        return $rep->makeResponse();
+        if(!$response->is_serialized) {
+            $rep = json_decode($response->getContent());
+            $rep = ResponseJar::make($rep, 0, '');
+            return $rep->makeResponse();
+        }else{
+            return $response;
+        }
     }
 }

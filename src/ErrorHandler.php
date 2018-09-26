@@ -20,7 +20,7 @@ class ErrorHandler extends ExceptionHandler
         $r = ResponseJar::make($exception->data ?? [], $exception->errorCode ?? -1, get_class($exception).' '.$exception->getMessage(), $exception->statusCode ?? 500,
                 [
                     'request' => $request->all(),
-                    'trace' => json_decode(json_encode($exception->getTrace())) 
+                    'trace' => json_decode(json_encode($exception->getTrace())),
                 ]
             );
 

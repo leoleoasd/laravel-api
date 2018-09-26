@@ -1,11 +1,8 @@
 <?php
 
 /*
- * This file is part of the leoleoasd/laravel-api.
- *
- * (c) Leo Lu <luyuxuanleo@gmail.com>
- *
- * This source file is subject to the GPLV3 license that is bundled.
+ * This file is a part of leoleoasd/laravel-api.
+ * Copyright (C) 2019 leoleoasd
  */
 
 namespace Leoleoasd\LaravelApi;
@@ -20,7 +17,9 @@ class APIMiddleware
      *
      * @param \Illuminate\Http\Request $request
      * @param \Closure                 $next
+     *
      * @throws \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -35,6 +34,7 @@ class APIMiddleware
             if (config('api.strict_mode')) {
                 throw new BadRequestHttpException('You are not allowed to define api version in URL.');
             }
+
             return $next($request);
         }
         Tools::init($request);
@@ -58,11 +58,12 @@ class APIMiddleware
         $requestURI->setAccessible(true);
         $requestURI->setValue($request, $newPath);
         $response = $next($request);
-        if(!$response->is_serialized) {
+        if (!$response->is_serialized) {
             $rep = json_decode($response->getContent());
             $rep = ResponseJar::make($rep, 0, '');
+
             return $rep->makeResponse();
-        }else{
+        } else {
             return $response;
         }
     }

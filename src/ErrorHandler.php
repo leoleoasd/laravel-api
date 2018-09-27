@@ -1,4 +1,7 @@
-s file is part of the leoleoasd/laravel-api.
+<?php
+
+/*
+ * This file is part of the leoleoasd/laravel-api.
  *
  * (c) Leo Lu <luyuxuanleo@gmail.com>
  *

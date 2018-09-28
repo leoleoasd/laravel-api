@@ -60,8 +60,10 @@ class APIMiddleware
         $response = $next($request);
         if (!$response->is_serialized) {
             $rep = json_decode($response->getContent());
-            $rep = ResponseJar::make($rep, 0, '');
-
+            if($rep)
+                $rep = ResponseJar::make($rep, 0, '');
+            else
+                $rep = ResponseJar::make($response->getContent(), 0, '');
             return $rep->makeResponse();
         } else {
             return $response;

@@ -61,7 +61,7 @@ class APIMiddleware
         $requestURI->setAccessible(true);
         $requestURI->setValue($request, $newPath);
         $response = $next($request);
-        if (!$response->is_serialized) {
+        if (!(isset($response->is_serialized) and $response->is_serialized)) {
             $rep = json_decode($response->getContent());
             if ($rep) {
                 $rep = ResponseJar::make($rep, 0, '');

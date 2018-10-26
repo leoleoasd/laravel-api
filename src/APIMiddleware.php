@@ -1,8 +1,11 @@
 <?php
 
 /*
- * This file is a part of leoleoasd/laravel-api.
- * Copyright (C) 2019 leoleoasd
+ * This file is part of the leoleoasd/laravel-api.
+ *
+ * (c) Leo Lu <luyuxuanleo@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled.
  */
 
 namespace Leoleoasd\LaravelApi;
@@ -60,13 +63,15 @@ class APIMiddleware
         $response = $next($request);
         if (!$response->is_serialized) {
             $rep = json_decode($response->getContent());
-            if($rep)
+            if ($rep) {
                 $rep = ResponseJar::make($rep, 0, '');
-            else
+            } else {
                 $rep = ResponseJar::make($response->getContent(), 0, '');
+            }
+
             return $rep->makeResponse();
-        } else {
-            return $response;
         }
+
+        return $response;
     }
 }

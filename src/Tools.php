@@ -38,7 +38,7 @@ class Tools
         if ($match == []) {
             return [];
         }
-        if ('' == $match[5]) {
+        if (!(isset($match[5]) and '' == $match[5])) {
             $match[5] = 'json';
         }
 

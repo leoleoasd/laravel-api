@@ -27,7 +27,6 @@ class APIServiceProvider extends ServiceProvider
             \Illuminate\Contracts\Debug\ExceptionHandler::class,
             ErrorHandler::class
         );
-        //var_dump($this->app->getBindings());
     }
 
     /**

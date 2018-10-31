@@ -86,9 +86,9 @@ class ResponseJar
         if (!config('app.debug')) {
             $this->debug = [];
         }
-        //$serializer = SerializerBuilder::create()->build();
-        //$content = $serializer->serialize($this, Tools::$header['formatter']);
-        $resp = new Response(json_encode($this)); //$content);
+        $serializer = SerializerBuilder::create()->build();
+        $content = $serializer->serialize($this, Tools::$header['formatter']);
+        $resp = new Response($content);
         $resp->header('Content-Type', 'application/'.Tools::$header['formatter']);
         $resp->setStatusCode($this->status_code ?? 500);
         $resp->is_serialized = true;

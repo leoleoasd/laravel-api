@@ -62,7 +62,11 @@ class APIMiddleware
         $requestURI->setValue($request, $newPath);
         $response = $next($request);
         if (!(isset($response->is_serialized) and $response->is_serialized)) {
-            $rep = json_decode($response->getContent());
+            try {
+                $rep = json_decode($response->getContent());
+            } catch (\Exception $e) {
+                $rep = null;
+            }
             if ($rep) {
                 $rep = ResponseJar::make($rep, 0, '');
             } else {

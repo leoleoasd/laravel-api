@@ -5,7 +5,7 @@
  *
  * (c) Leo Lu <luyuxuanleo@gmail.com>
  *
- * This source file is subject to the MIT license that is bundled.
+ * This source file is subject to the GPLV3 license that is bundled.
  */
 
 namespace Leoleoasd\LaravelApi;
@@ -28,7 +28,6 @@ class Tools
      * Analyse an incoming header.
      *
      * @params string $accept
-     *
      * @return array
      */
     public static function analyseHeader($accept)
@@ -39,11 +38,10 @@ class Tools
             return [];
         }
         if (!isset($match[5])) {
-            if ('' == $match[5]) {
-                $match[5] = 'json';
-            }
+            $match[5] = 'json';
         }
-
+        if($match[5] == '')
+            $match[5] = 'json';
         return [
             'standard_tree' => $match[1],
             'subtype' => $match[2],
@@ -56,7 +54,6 @@ class Tools
      * Get api version defined in header.
      *
      * @param \Illuminate\Http\Request $request
-     *
      * @return mixed
      */
     public static function getVersion()
@@ -86,3 +83,4 @@ class Tools
         return static::$method(...$args);
     }
 }
+
